@@ -2,7 +2,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chat_App</title>
+    <style>
+        body{
+            background-color: #081b29;
+        }
+        .container{
+            position: absolute;
+            margin-top: 50px;
+            left: 40%;
+            width: 500px;
+            height: 100%;
+        }
+        .input-div{
+            display: flex;
+            flex-direction: column-reverse;
+            height: 30px;
+        }
+        #messages{
+            background-color: white;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
 </head>
