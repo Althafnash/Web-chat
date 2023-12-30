@@ -29,6 +29,7 @@
 <body>
     <script type="text/javascript">
         $(document).ready(function () {
+            // Change localhsot to your ip addresse so you can talk with other compute in your network
             var socket = io.connect("http://localhost:5000")
             socket.on('connect' , function (){
                 socket.send('User connected')

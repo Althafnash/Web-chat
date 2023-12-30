@@ -15,6 +15,7 @@ def handle_message(message):
 def index():
     return render_template("index.html")
 
+# Change localhsot to your ip addresse so you can talk with other compute in your network
 if __name__ == "__main__":
     socketio.run(app, host="localhost")
     
