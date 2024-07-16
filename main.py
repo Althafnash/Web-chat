@@ -1,8 +1,13 @@
 from flask import Flask ,  render_template
 from flask_socketio import SocketIO , send
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
+password = os.getenv("PASSWORD")
 
 app = Flask(__name__)
-app.config['SECRET'] = "Nash8837"
+app.config['SECRET'] = password
 socketio = SocketIO(app , cors_allowed_origins="*")
 
 @socketio.on('message')
