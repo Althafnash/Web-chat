@@ -1,26 +1,61 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat_App</title>
     <style>
-        body{
-            background-color: #081b29;
-        }
-        .container{
-            position: absolute;
-            margin-top: 50px;
-            left: 40%;
-            width: 500px;
-            height: 100%;
-        }
-        .input-div{
+        body {
+            background-image: url("../static/images.jpeg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column-reverse;
-            height: 30px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-        #messages{
+        .container {
+            background-color: rgba(255, 255, 0, 0.9); /* Semi-transparent yellow */
+            border-radius: 10px;
+            padding: 20px;
+            width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .input-div {
+            display: flex;
+            margin-top: 10px;
+        }
+        #messages {
             background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        #messages p {
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -29,29 +64,29 @@
 <body>
     <script type="text/javascript">
         $(document).ready(function () {
-            // Change localhsot to your ip addresse so you can talk with other compute in your network
-            var socket = io.connect("http://localhost:5000")
-            socket.on('connect' , function (){
-                socket.send('User connected')
+            var socket = io.connect("http://localhost:5000");
+            
+            socket.on('connect', function () {
+                socket.send('User connected');
             });
 
-            socket.on('message' , function (data) {
+            socket.on('message', function (data) {
                 $('#messages').append($("<p>").text(data));
             });
 
-            $('#sendbtn').on('click',function (){
-                socket.send($('#username').val() + ':' + $('#Meassages').val());
+            $('#sendbtn').on('click', function () {
+                var username = $('#username').val();
+                var message = $('#Meassages').val();
+                socket.send(username + ': ' + message);
                 $('#Meassages').val('');
             });
         });
     </script>
     <div class="container">
-        <div id="messages">
-
-        </div>
+        <div id="messages"></div>
         <div class="input-div">
             <input type="text" placeholder="username" id="username">
-            <input type="text" placeholder="Meassages" id="Meassages">
+            <input type="text" placeholder="Messages" id="Meassages">
             <button id="sendbtn">Send</button>
         </div>        
     </div>
